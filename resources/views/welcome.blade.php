@@ -53,7 +53,7 @@
 
 
                             <div class="nav d-flex justify-content-end  p-3">
-                                <a class="btn btn-outline-primary px-3 rounded-pill" href="{{route('blog.detail',$article->id)}}">
+                                <a class="btn btn-outline-primary px-3 rounded-pill" href="{{route('blog.detail',$article->slug)}}">
                                     Read More
                                 </a>
                             </div>
