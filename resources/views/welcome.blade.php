@@ -7,11 +7,11 @@
                 <div class="">
                     <div class="py-3">
                         <div class="small post-category mb-3">
-                            <a href="{{route('blog.category',$article->category->id)}}" rel="category tag">{{$article->category->title}}</a>
+                            <a href="{{route('blog.category',$article->category->slug)}}" rel="category tag">{{$article->category->title}}</a>
                         </div>
 
                         <a class="fw-bold h4 d-block text-decoration-none"
-                           href="{{route('blog.detail',$article->id)}}">
+                           href="{{route('blog.detail',$article->slug)}}">
                             {{$article->title}} </a>
                         <div class="my-3 feature-image-box">
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -15,6 +16,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
+//        $cat=Category::all();
+//        foreach ($cat as $c) {
+//            $c->slug=Str::slug($c->title);
+//            $c->update();
+//        }
         return view('category.index');
     }
 
@@ -41,6 +47,7 @@ class CategoryController extends Controller
         ]);
         $category= new Category();
         $category->title=$request->category;
+        $category->slug=Str::slug($request->category)."-".uniqid();
         $category->user_id=Auth::id();
         $category->save();
         return redirect()->route('category.index')->with("message","New category created");
@@ -82,6 +89,7 @@ class CategoryController extends Controller
             "category"=>"required|unique:categories,title,".$category->id
         ]);
         $category->title=$request->category;
+        $category->slug=Str::slug($request->category)."-".uniqid();
         $category->update();
         return redirect()->route('category.index')->with("message","Category updated");
     }

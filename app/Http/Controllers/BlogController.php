@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -21,11 +22,12 @@ class BlogController extends Controller
 //        return $article;
         return view('blog.detail',compact('article'));
     }
-    public function baseOnCategory($id){
+    public function baseOnCategory($slug){
+        $id=Category::where('slug',$slug)->first();
         $articles=Article::when(isset(request()->search),function($q){
             $search=request()->search;
             return $q->orwhere("title","like","%$search%")->orwhere("description","like","%$search%");
-        })->where("category_id",$id)->with(['user','category'])->latest('id')->paginate(6);
+        })->where("category_id",$id->id)->with(['user','category'])->latest('id')->paginate(6);
 //        return $articles;
         return view('welcome',compact('articles'));
     }
