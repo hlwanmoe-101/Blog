@@ -16,7 +16,14 @@
                     <i class="fas fa-home"></i>
                     {{ __('You are logged in!') }}
                     <button class="test btn btn-primary">test</button>
+                        <br>
+                        <br>
+                        <br>
+                        <button class="btn btn-primary">Alert</button>
+                        <button class="btn btn-primary">Toast</button>
 
+                        <br>
+                        <br>
                         <br>
                     {{ Request::url() }}
                         <br>
@@ -46,5 +53,6 @@
         $(".test").click(function (){
             alert("hello");
         })
+
     </script>
 @endsection

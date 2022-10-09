@@ -84,5 +84,13 @@ class ProfileController extends Controller
         return redirect()->route("profile.edit.photo");
 
     }
+    public function updateInfo(Request $request){
+        $user=User::find(Auth::id());
+        $user->phone=$request->phone;
+        $user->address=$request->address;
+        $user->update();
+        return redirect()->back();
+
+    }
 
 }

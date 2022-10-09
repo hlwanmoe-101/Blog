@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', 'BlogController@index')->name('index');
 Route::get('/detail/{id}','BlogController@detail')->name('blog.detail');
-Route::get('/category/{id}','BlogController@baseOnCategory')->name('blog.category');
+Route::get('/categozry/{id}','BlogController@baseOnCategory')->name('blog.category');
 Route::get('/user/{id}','BlogController@baseOnUser')->name('blog.user');
 Route::get('/date/{date}','BlogController@baseOnDate')->name('blog.date');
 
@@ -41,6 +41,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
         Route::post('/change-name','ProfileController@changeName')->name('profile.changeName');
         Route::post('/change-email','ProfileController@changeEmail')->name('profile.changeEmail');
         Route::post('/change-photo','ProfileController@changePhoto')->name('profile.changePhoto');
+        Route::post("/update-user-info","ProfileController@updateInfo")->name("profile.update.info");
     });
 });
 
