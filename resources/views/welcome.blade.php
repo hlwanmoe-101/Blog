@@ -48,7 +48,8 @@
                             </div>
 
                             <p>
-                                {{ \Illuminate\Support\Str::words($article->description,50) }}
+{{--                                {{ \Illuminate\Support\Str::words($article->description,50) }}--}}
+                                {{$article->excerpt}}
                             </p>
 
 

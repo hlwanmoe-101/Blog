@@ -5,15 +5,21 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
     public function index(){
+
+//        $article=Article::all();
+//        foreach ($article as $a){
+//            $a->excerpt=Str::words($a->description,50);
+//            $a->update();
+//        }
         $articles=Article::when(isset(request()->search),function($q){
             $search=request()->search;
             return $q->orwhere("title","like","%$search%")->orwhere("description","like","%$search%");
         })->with(['user','category'])->latest('id')->paginate(6);
-//        return $articles;
         return view('welcome',compact('articles'));
     }
 
