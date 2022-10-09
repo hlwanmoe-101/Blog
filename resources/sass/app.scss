@@ -3,9 +3,11 @@
 $font-family-sans-serif : 'Montserrat', 'Padauk', sans-serif;
 
 //$primary : #118ab2;
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import "feather-icons-web/feather.css";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+$swal2-confirm-button-background-color: $primary;
 @import "myStyle.css";
+@import "~sweetalert2/src/sweetalert2";

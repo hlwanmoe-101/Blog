@@ -19,6 +19,14 @@
                         <small class="text-black-50">
                             {{ Auth::user()->email }}
                         </small>
+                        <hr>
+                        <small class="text-black-50">
+                            <span> Contact : {{ Auth::user()->phone }} </span>
+                        </small>
+                        <hr>
+                        <small class="text-black-50">
+                            <span> Address :  {{ Auth::user()->address }} </span>
+                        </small>
 
                     </div>
                 </div>

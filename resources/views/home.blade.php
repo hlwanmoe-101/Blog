@@ -19,8 +19,8 @@
                         <br>
                         <br>
                         <br>
-                        <button class="btn btn-primary">Alert</button>
-                        <button class="btn btn-primary">Toast</button>
+                        <button class="btn btn-primary alertSwal">Alert</button>
+                        <button class="btn btn-primary test-toast">Toast</button>
 
                         <br>
                         <br>
@@ -53,6 +53,34 @@
         $(".test").click(function (){
             alert("hello");
         })
+        $(".alertSwal").click(function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+
+            })
+        })
+
+        $(".test-toast").click(function () {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'bottom-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Signed in successfully'
+            })
+        })
+
 
     </script>
 @endsection

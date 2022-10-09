@@ -85,11 +85,16 @@ class ProfileController extends Controller
 
     }
     public function updateInfo(Request $request){
+        $request->validate([
+            'phone'=>'required|min:11',
+            'address'=>'required|min:1|max:50',
+        ]);
+
         $user=User::find(Auth::id());
         $user->phone=$request->phone;
         $user->address=$request->address;
         $user->update();
-        return redirect()->back();
+        return redirect()->back()->with("toast",["icon"=>"success","title"=>"Information Updated"]);
 
     }
 

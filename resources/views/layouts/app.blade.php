@@ -38,5 +38,6 @@
             @include("user-profile.update-info")
         @endempty
     @endauth
+@include("layouts.toast")
 </body>
 </html>
