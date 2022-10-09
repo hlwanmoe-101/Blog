@@ -14,8 +14,10 @@ class AddColumnUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone')->unique()->nullable()->after('email');
-            $table->string('address')->nullable()->after('photo');
+//            $table->string('phone')->unique()->nullable()->after('email');
+//            $table->string('address')->nullable()->after('photo');
+            $table->enum('role',[0,1])->default(1)->after('password');
+            $table->enum('isBaned',[0,1])->default(0)->after('role');
         });
     }
 

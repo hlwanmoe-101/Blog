@@ -21,12 +21,12 @@
             <x-menu-item name="Create Article" class="feather-plus-circle" link="{{route('article.create')}}"></x-menu-item>
             <x-menu-item name="Article List" class="feather-list" link="{{route('article.index')}}"></x-menu-item>
 
-            <x-menu-spacer></x-menu-spacer>
 
-            <x-menu-title title="My Test Menu"></x-menu-title>
-            <x-menu-item name="Create Item" class="feather-plus-circle" ></x-menu-item>
-            <x-menu-item name="Item List" class="feather-list" counter="50"></x-menu-item>
-
+            @if(\Illuminate\Support\Facades\Auth::user()->role == 0)
+                <x-menu-spacer></x-menu-spacer>
+                <x-menu-title title="User Manager"></x-menu-title>
+                <x-menu-item name="Users" class="feather-users" link="{{route('user-manager.index')}}" ></x-menu-item>
+            @endif
 
             <x-menu-spacer></x-menu-spacer>
 
