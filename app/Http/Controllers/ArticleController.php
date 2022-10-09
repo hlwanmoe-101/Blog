@@ -14,6 +14,13 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function apiIndex(){
+        $articles=Article::when(isset(request()->search),function($q){
+            $search=request()->search;
+            return $q->orwhere("title","like","%$search%")->orwhere("description","like","%$search%");
+        })->with(['user','category'])->latest('id')->paginate(6);
+        return $articles;
+    }
     public function index()
     {
 //        $article=Article::all();
