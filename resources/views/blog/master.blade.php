@@ -66,7 +66,7 @@
                         <ul class="list-group">
                             @forelse($categories as $category)
                             <li class="list-group-item">
-                                <a href="{{route('blog.category',$category->id)}}" class="{{request()->url() == route('blog.category',$category->id) ? 'active' : ''}}">{{ $category->title }}</a>
+                                <a href="{{route('blog.category',$category->slug)}}" class="{{request()->url() == route('blog.category',$category->slug) ? 'active' : ''}}">{{ $category->title }}</a>
                             </li>
                             @empty
                                 <span>There is no Category 😞</span>

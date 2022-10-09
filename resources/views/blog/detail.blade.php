@@ -6,7 +6,7 @@
             <div class="py-3">
 
                 <div class="small post-category mb-3">
-                    <a href="{{route('blog.category',$article->category->id)}}" rel="category tag">{{$article->category->title}}</a>
+                    <a href="{{route('blog.category',$article->category->slug)}}" rel="category tag">{{$article->category->title}}</a>
                 </div>
 
                 <h2 class="fw-bolder">{{$article->title}}</h2>
