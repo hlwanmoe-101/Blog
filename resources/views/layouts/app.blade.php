@@ -39,5 +39,6 @@
         @endempty
     @endauth
 @include("layouts.toast")
+@include("layouts.is-baned")
 </body>
 </html>

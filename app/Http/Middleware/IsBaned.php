@@ -16,10 +16,10 @@ class IsBaned
      */
     public function handle($request, Closure $next)
     {
-//        if(Auth::user()->isBaned != 0){
-//            Auth::logout();
-//            return redirect()->route('login')->with("toast",["icon"=>"error","title"=>"Your Baned"]);
-//        }
+        if(Auth::user()->isBaned != 0){
+            Auth::logout();
+            return redirect()->route('login')->with("alert",["icon"=>"error","title"=>"Your Baned","text"=>"Contact to Admin"]);
+        }
         return $next($request);
     }
 }

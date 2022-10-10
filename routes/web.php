@@ -25,12 +25,12 @@ Route::get('/date/{date}','BlogController@baseOnDate')->name('blog.date');
 
 Route::view('/about',"blog.about")->name("about");
 
-Route::prefix('dashboard')->middleware('auth')->group(function(){
+Route::prefix('dashboard')->middleware(['auth','isBaned'])->group(function(){
     Route::resource('category','CategoryController');
     Route::resource('article','ArticleController');
+    Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::middleware(['adminOnly','isBaned'])->group(function (){
-        Route::get('/home', 'HomeController@index')->name('home');
+    Route::middleware('adminOnly')->group(function (){
         Route::get('/user-manager','UserManagerController@index')->name('user-manager.index');
         Route::post('/make-admin','UserManagerController@makeAdmin')->name('user-manager.makeAdmin');
         Route::post('/baned','UserManagerController@baned')->name('user-manager.baned');
