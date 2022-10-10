@@ -43,6 +43,7 @@
                                                <input type="hidden" name="id" value="{{$user->id}}">
                                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="return askConfirm({{$user->id}})">Make Admin</button>
                                            </form>
+                                            <button type="button" onclick="changePassword({{$user->id}},'{{$user->name}}')" class="btn btn-sm btn-outline-warning" >Change Password</button>
                                             @if($user->isBaned != 1)
                                                    <form class="d-inline-block" action="{{route('user-manager.baned')}}" id="banForm{{$user->id}}" method="post">
                                                        @csrf
@@ -113,6 +114,47 @@
                 setInterval(function () {
                     $("#banForm"+id).submit();
                 },1000)
+            })
+        }
+        function changePassword(id,name) {
+            let url="{{route('user-manager.changePassword')}}"
+            Swal.fire({
+                title: 'Password change for '+name,
+                input: 'password',
+                inputAttributes: {
+                    autocapitalize: 'off',
+                    // required : 'required',
+                    // minLength : 8
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Change',
+                showLoaderOnConfirm: true,
+                preConfirm :function (newpassword) {
+                    console.log(id,newpassword);
+                    $.post(url,{
+                        id: id,
+                        newpassword : newpassword,
+                        _token : "{{csrf_token()}}",
+                    }).done(function (data) {
+                        if(data.status==200){
+                            Swal.fire({
+                                icon:"success",
+                                title:"Complete Password Change",
+                                text: data.message
+                            })
+
+
+                        }else{
+                            console.log(data);
+                            Swal.fire({
+                                icon: "error",
+                                title: "Can't Change Password",
+                                text: data.message.newpassword[0]
+                            })
+
+                        }
+                    })
+                }
             })
         }
     </script>

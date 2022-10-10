@@ -34,6 +34,7 @@ Route::prefix('dashboard')->middleware(['auth','isBaned'])->group(function(){
         Route::get('/user-manager','UserManagerController@index')->name('user-manager.index');
         Route::post('/make-admin','UserManagerController@makeAdmin')->name('user-manager.makeAdmin');
         Route::post('/baned','UserManagerController@baned')->name('user-manager.baned');
+        Route::post('/change-password','UserManagerController@changePassword')->name('user-manager.changePassword');
     });
 
     Route::prefix('profile')->group(function(){
